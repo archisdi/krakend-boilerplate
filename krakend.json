@@ -1,0 +1,15 @@
+{
+    "$schema": "https://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "endpoints": [
+        {
+          "endpoint": "/users",
+          "backend": {
+            "host": {{ marshal .backends.serviceOne }},
+            "url_pattern": "/users"
+          },
+          "input_headers": ["x-user"],
+          "extra_config": {{ marshal .jwt }}
+        }
+      ]
+}
