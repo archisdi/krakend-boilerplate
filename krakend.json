@@ -5,8 +5,17 @@
         {
           "endpoint": "/users",
           "backend": {
-            "host": {{ marshal .backends.serviceOne }},
+            "host": "{{ env "SERVICE_ONE_URL" }}",
             "url_pattern": "/users"
+          },
+          "input_headers": ["x-user"],
+          "extra_config": {{ marshal .jwt }}
+        },
+        {
+          "endpoint": "/products",
+          "backend": {
+            "host": "{{ env "SERVICE_TWO_URL" }}",
+            "url_pattern": "/products"
           },
           "input_headers": ["x-user"],
           "extra_config": {{ marshal .jwt }}
