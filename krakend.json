@@ -8,7 +8,7 @@
             "host": "{{ env "SERVICE_ONE_URL" }}",
             "url_pattern": "/users"
           },
-          "input_headers": ["x-user"],
+          "input_headers": ["x-user-id"],
           "extra_config": {{ marshal .jwt }}
         },
         {
@@ -17,7 +17,7 @@
             "host": "{{ env "SERVICE_TWO_URL" }}",
             "url_pattern": "/products"
           },
-          "input_headers": ["x-user"],
+          "input_headers": ["x-user-id"],
           "extra_config": {{ marshal .jwt }}
         },
         {
