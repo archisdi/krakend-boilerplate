@@ -19,6 +19,23 @@
           },
           "input_headers": ["x-user"],
           "extra_config": {{ marshal .jwt }}
+        },
+        {
+          "endpoint": "/login",
+          "method": "POST",
+          "backend": [{
+              "host": "{{ env "SERVICE_ONE_URL" }}",
+              "url_pattern": "/token"
+          }],
+          "extra_config": {
+              "auth/signer": {
+                  "alg": "RS256",
+                  "kid": "wg4L5k0xA_f7GEvRTu6HsjBAm4myqBnVi0qOSH8XlGA",
+                  "keys_to_sign": ["access_token", "refresh_token"],
+                  "jwk_url": "http://localhost:8000/jwks",
+                  "disable_jwk_security": true
+              }
+          }
         }
       ]
 }
