@@ -1,0 +1,26 @@
+{{define "JwtValidator"}}
+{
+    "auth/validator": {
+      "alg": "RS256",
+      "jwk_url": "{{env "SERVICE_ONE_URL" }}/jwks2",
+      "cache": true,
+      "disable_jwk_security": true,
+      "operation_debug": true,
+      "propagate_claims": [
+          ["sub", "x-rey-user-id"]
+      ]
+    }
+}
+{{end}}
+
+{{define "JwtSigner"}}
+{
+    "auth/signer": {
+      "alg": "RS256",
+      "kid": "wg4L5k0xA_f7GEvRTu6HsjBAm4myqBnVi0qOSH8XlGA",
+      "keys_to_sign": ["access_token", "refresh_token"],
+      "jwk_url": "{{env "SERVICE_ONE_URL"}}/jwks",
+      "disable_jwk_security": true
+    }
+}
+{{end}}
