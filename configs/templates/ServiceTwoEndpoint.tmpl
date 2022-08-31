@@ -1,0 +1,13 @@
+{{define "ServiceTwoEndpoint"}}
+
+{
+    "endpoint": "/products",
+    "backend": [{
+        "host": "{{ env "SERVICE_TWO_URL" }}",
+        "url_pattern": "/products"
+    }],
+    "input_headers": ["x-user-id"],
+    "extra_config": {{ template "JwtValidator" }}
+}
+
+{{end}}

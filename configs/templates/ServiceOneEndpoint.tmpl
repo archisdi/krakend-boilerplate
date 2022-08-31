@@ -1,0 +1,22 @@
+{{define "ServiceOneEndpoint"}}
+
+{
+    "endpoint": "/users",
+    "backend": [{
+        "host": "{{ env "SERVICE_ONE_URL" }}",
+        "url_pattern": "/users"
+    }],
+    "input_headers": ["x-user-id"],
+    "extra_config": {{ template "JwtValidator" }}
+},
+{
+    "endpoint": "/login",
+    "method": "POST",
+    "backend": [{
+        "host": "{{ env "SERVICE_ONE_URL" }}",
+        "url_pattern": "/token"
+    }],
+    "extra_config": {{ template "JwtSigner" }}
+}
+
+{{end}}
