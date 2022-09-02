@@ -1,7 +1,7 @@
 {{- define "jwt.validator" -}}
 auth/validator: 
   alg: RS256
-  jwk_url: {{ .Values.host.serviceOne }}
+  jwk_url: {{ .host.serviceOne }}
   cache: true
   disable_jwk_security: true
   operation_debug: true
@@ -10,7 +10,9 @@ auth/validator:
       - sub
       - x-user-id
 {{- end -}}
+
 ---
+
 {{- define "jwt.signer" -}}
 auth/signer: 
   alg: RS256
@@ -18,6 +20,6 @@ auth/signer:
   keys_to_sign: 
     - access_token
     - refresh_token
-  jwk_url: {{ .Values.host.serviceTwo }}/jwks2
+  jwk_url: {{ .host.serviceTwo }}/jwks2
   disable_jwk_security: true
 {{- end -}}

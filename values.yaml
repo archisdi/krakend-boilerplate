@@ -89,3 +89,24 @@ host:
 
 krakend:
   version: 3
+
+endpoints:
+  - endpoint: /products
+    method: GET
+    backend:
+      - url_pattern: /products
+        method: GET
+    extra_config: validator
+  - endpoint: /users
+    method: GET
+    backend:
+      - url_pattern: /users
+        method: GET
+    extra_config: validator
+  - endpoint: /login
+    method: POST
+    backend:
+      - url_pattern: /token
+        method: POST
+    extra_config: signer
+  

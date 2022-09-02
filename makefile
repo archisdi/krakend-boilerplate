@@ -7,5 +7,5 @@ all:
 	krakend run -d -c "./krakend/templates/krakend.yaml"
 
 check: 
-	helm template . --output-dir .
+	helm template . --debug --output-dir .
 	krakend check -t -d -c "./krakend/templates/krakend.yaml"
