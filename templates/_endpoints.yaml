@@ -9,6 +9,11 @@
       host:
         - {{ .host }}
   {{ end }}
+
+  {{- if .headers }}
+  input_headers: {{ .headers }}
+  {{- end }}
+
   {{- if .extra_config }}
   {{- if eq .extra_config "validator" }}
   extra_config:

@@ -1,13 +1,12 @@
 {{- define "jwt.validator" -}}
 auth/validator: 
-  alg: RS256
-  jwk_url: {{ .host.jwks }}
+  alg: {{ .auth.alg }}
+  jwk_url: {{ .auth.jwks_host }}
   cache: true
   disable_jwk_security: true
   operation_debug: true
   propagate_claims:
-    -
-      - sub
+    - - sub
       - x-user-id
 {{- end -}}
 
@@ -15,11 +14,11 @@ auth/validator:
 
 {{- define "jwt.signer" -}}
 auth/signer: 
-  alg: RS256
+  alg: {{ .auth.alg }}
   kid: {{ .auth.kid }}
   keys_to_sign: 
     - access_token
     - refresh_token
-  jwk_url: {{ .host.symectric }}
+  jwk_url: {{ .auth.symetric_host }}
   disable_jwk_security: true
 {{- end -}}
