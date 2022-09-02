@@ -1,11 +1,15 @@
 auth:
+  alg: RS256
+  kid: DZI89oVsY0O9iU-gUm2mSXyZpAFGn5W5I1JzgbFwsp8
   symetric_host: http://localhost:8000/symetric
   jwks_host: http://localhost:8000/jwks
-  kid: wg4L5k0xA_f7GEvRTu6HsjBAm4myqBnVi0qOSH8XlGA
 
 host:
-  serviceOne: &serviceOne http://localhost:8888
+  serviceOne: &serviceOne http://localhost:8000
   serviceTwo: &serviceTwo http://localhost:8000
+
+claims: &claims
+  - x-user-id
 
 endpoints:
   - endpoint: /products
@@ -23,6 +27,7 @@ endpoints:
         method: GET
         host: *serviceOne
     extra_config: validator
+    headers: *claims
 
   - endpoint: /login
     method: POST
