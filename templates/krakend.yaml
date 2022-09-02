@@ -1,0 +1,35 @@
+---
+version: {{ .Values.krakend.version }}
+endpoints:
+
+- endpoint: /products
+  method: GET
+  backend:
+  - url_pattern: /products
+    method: GET
+    host:
+    - {{ .Values.host.serviceOne }}
+  extra_config:
+    {{- include "jwt.validator" . | nindent 4 }}
+
+- endpoint: /users
+  method: GET
+  backend:
+  - url_pattern: /users
+    method: GET
+    host:
+    - {{ .Values.host.serviceOne }}
+  input_headers:
+    - x-user-id
+  extra_config:
+    {{- include "jwt.validator" . | nindent 4 }}
+
+- endpoint: /login
+  method: POST
+  backend:
+  - url_pattern: /token
+    method: POST
+    host:
+    - {{ .Values.host.serviceOne }}
+  extra_config:
+    {{- include "jwt.signer" . | nindent 4 }}
