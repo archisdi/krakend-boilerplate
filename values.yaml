@@ -1,0 +1,33 @@
+auth:
+  symetric_host: http://localhost:8000/symetric
+  jwks_host: http://localhost:8000/jwks
+  kid: wg4L5k0xA_f7GEvRTu6HsjBAm4myqBnVi0qOSH8XlGA
+
+host:
+  serviceOne: &serviceOne http://localhost:8888
+  serviceTwo: &serviceTwo http://localhost:8000
+
+endpoints:
+  - endpoint: /products
+    method: GET
+    backend:
+      - url_pattern: /products
+        method: GET
+        host: *serviceOne
+    extra_config: validator
+
+  - endpoint: /users
+    method: GET
+    backend:
+      - url_pattern: /users
+        method: GET
+        host: *serviceOne
+    extra_config: validator
+
+  - endpoint: /login
+    method: POST
+    backend:
+      - url_pattern: /token
+        method: POST
+        host: *serviceTwo
+    extra_config: signer
