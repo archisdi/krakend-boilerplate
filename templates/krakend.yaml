@@ -1,4 +1,4 @@
 ---
-version: {{ .Values.krakend.version }}
+version: 3
 endpoints:
 {{- include "endpoints" . }}

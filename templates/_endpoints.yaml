@@ -7,7 +7,7 @@
     - url_pattern: {{ .url_pattern }}
       method: {{ .method }}
       host:
-        - {{ $.Values.host.serviceOne }}
+        - {{ .host }}
   {{ end }}
   {{- if .extra_config }}
   {{- if eq .extra_config "validator" }}
