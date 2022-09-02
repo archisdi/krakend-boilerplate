@@ -3,9 +3,12 @@
 SERVICE := SERVICE_ONE_URL=${SERVICE_ONE_URL} SERVICE_TWO_URL=${SERVICE_TWO_URL} 
 
 all: 
-	helm template . --output-dir .
-	krakend run -d -c "./krakend/templates/krakend.yaml"
+	make check
+	krakend run -d -c "./api.yaml"
+
+build: 
+	helm template . | cat - > api.yaml
 
 check: 
-	helm template . --debug --output-dir .
-	krakend check -t -d -c "./krakend/templates/krakend.yaml"
+	make build
+	krakend check -t -d -c "./api.yaml"
