@@ -1,0 +1,63 @@
+---
+# Source: krakend/templates/krakend.yaml
+version: 3
+endpoints:
+- endpoint: /products
+  method: GET
+  backend:
+  
+    - url_pattern: /products
+      method: GET
+      host:
+        - http://localhost:8000
+  
+  extra_config:
+    auth/validator: 
+      alg: RS256
+      jwk_url: http://localhost:8000/jwks
+      cache: true
+      disable_jwk_security: true
+      operation_debug: true
+      propagate_claims:
+        - - sub
+          - x-user-id
+
+- endpoint: /users
+  method: GET
+  backend:
+  
+    - url_pattern: /users
+      method: GET
+      host:
+        - http://localhost:8000
+  
+  input_headers: [x-user-id]
+  extra_config:
+    auth/validator: 
+      alg: RS256
+      jwk_url: http://localhost:8000/jwks
+      cache: true
+      disable_jwk_security: true
+      operation_debug: true
+      propagate_claims:
+        - - sub
+          - x-user-id
+
+- endpoint: /login
+  method: POST
+  backend:
+  
+    - url_pattern: /token
+      method: POST
+      host:
+        - http://localhost:8000
+  
+  extra_config:
+    auth/signer: 
+      alg: RS256
+      kid: p9dN962JxaUHf5x7ny4cc-gCYk7UUf1WhrD00TNBJYA
+      keys_to_sign: 
+        - access_token
+        - refresh_token
+      jwk_url: http://localhost:8000/symetric
+      disable_jwk_security: true
