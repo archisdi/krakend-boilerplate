@@ -1,7 +1,7 @@
 module.exports = () => {
     return {
         "auth/signer": {
-            "alg": "RS256",
+            "alg": process.env.JWK_ALG,
             "kid": process.env.JWK_KID,
             "keys_to_sign": [
             "access_token",

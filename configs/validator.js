@@ -1,7 +1,7 @@
 module.exports = () => {
     return {
       "auth/validator": {
-        "alg": "RS256",
+        "alg": process.env.JWK_ALG,
         "jwk_url": process.env.JWK_URL,
         "cache": true,
         "disable_jwk_security": true,
