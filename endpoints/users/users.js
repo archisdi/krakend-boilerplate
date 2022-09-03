@@ -1,11 +1,11 @@
-const signer = require('../configs/signer');
-const { CONTEXT_HEADER } = require('../constant/context');
+const validator = require('../../configs/validator');
+const { CONTEXT_HEADER } = require('../../constant/context');
 
 module.exports = () => {
     const host = process.env.SERVICE_ONE;
 
     const config = {
-        ...signer()
+        ...validator()
     };
 
     return [

@@ -1,4 +1,8 @@
 all: 
+	make build
+	make run
+
+run:
 	krakend run -c "./apis.json"
 
 build:

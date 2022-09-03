@@ -1,8 +1,8 @@
-const validator = require('../configs/validator');
+const signer = require('../configs/signer');
 const { HTTP_METHOD } = require('../constant/context');
 
 module.exports = () => {
-    const host = "http://localhost:8000";
+    const host = process.env.SERVICE_ONE;
 
     return [{
         "endpoint": "/login",
@@ -15,7 +15,7 @@ module.exports = () => {
           }
         ],
         "extra_config": {
-            ...validator()
+            ...signer()
         }
     }];
 }
