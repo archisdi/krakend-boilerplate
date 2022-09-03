@@ -2,12 +2,12 @@ module.exports = () => {
     return {
         "auth/signer": {
             "alg": "RS256",
-            "kid": "p9dN962JxaUHf5x7ny4cc-gCYk7UUf1WhrD00TNBJYA",
+            "kid": process.env.JWK_KID,
             "keys_to_sign": [
             "access_token",
             "refresh_token"
             ],
-            "jwk_url": "http://localhost:8000/symetric",
+            "jwk_url": process.env.JWK_SYMETRIC_KEY_URL,
             "disable_jwk_security": true
         }
     }

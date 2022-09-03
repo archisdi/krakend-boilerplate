@@ -2,7 +2,7 @@ const signer = require('../configs/signer');
 const { CONTEXT_HEADER } = require('../constant/context');
 
 module.exports = () => {
-    const host = "http://localhost:8000";
+    const host = process.env.SERVICE_ONE;
 
     const config = {
         ...signer()

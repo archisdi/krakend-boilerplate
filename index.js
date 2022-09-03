@@ -1,5 +1,12 @@
 const fs = require('fs');
 
+const loadEnv = () => {
+    const env = require('./env.json');
+    Object.entries(env).forEach(([key, value]) => {
+        process.env[key] = value;
+    });
+}
+
 const loadEndpoints = () => {
     const files = fs.readdirSync('./endpoints');
     return files.flatMap(path => {
@@ -9,7 +16,9 @@ const loadEndpoints = () => {
     });
 }
 
+/** main */
 (async () => {
+    loadEnv();
     const endpoints = loadEndpoints();
     const apis = {
         version: 3,
