@@ -1,0 +1,7 @@
+{
+    "SERVICE_ONE": "http://localhost:8000",
+    "SERVICE_TWO": "http://localhost:8001",
+    "JWK_KID": "kid",
+    "JWK_SYMETRIC_KEY_URL": "http://localhost:8000/symetric",
+    "JWK_URL": "http://localhost:8000/jwks"
+}
