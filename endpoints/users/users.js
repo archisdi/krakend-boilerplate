@@ -1,4 +1,5 @@
 const validator = require('../../configs/validator');
+const timeout = require('../../configs/timeout');
 const { CONTEXT_HEADER } = require('../../constant/context');
 
 module.exports = () => {
@@ -19,7 +20,8 @@ module.exports = () => {
                 "host": [host]
               }
             ],
-            "extra_config": config
+            "extra_config": config,
+            ...timeout("2s")
           },
           {
             "endpoint": "/users",
@@ -32,7 +34,8 @@ module.exports = () => {
               }
             ],
             "input_headers": CONTEXT_HEADER,
-            "extra_config": config
+            "extra_config": config,
+            ...timeout()
           },
     ]
 }

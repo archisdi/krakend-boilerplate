@@ -34,7 +34,8 @@ const loadEndpoints = (directory) => {
     const endpoints = loadEndpoints('./endpoints');
     const apis = {
         version: 3,
-        endpoints: endpoints
+        endpoints: endpoints,
+        timeout: process.env.GLOBAL_TIMEOUT
     }
     fs.writeFileSync('./apis.json', JSON.stringify(apis, null, 2));
 })();
